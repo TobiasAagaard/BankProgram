@@ -34,6 +34,11 @@ namespace BankProgram
                 Balance -= amount;
             }
         }
+
+        public string GetAccountDetails()
+        {
+            return $"Account name: {name}, Balance: {balance} DKK";
+        }
         }
         
 }
