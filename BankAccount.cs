@@ -1,3 +1,5 @@
+using System.Reflection.Metadata.Ecma335;
+
 namespace BankProgram
 {
     class BankAccount
@@ -14,26 +16,23 @@ namespace BankProgram
             this.balance = balance;
         }
          
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-        public decimal getBalance()
+        public string Name {get { return name; } private set { name = value; } }
+        public int Id { get { return id; } private set { id = value;}}
+        public decimal Balance()
         {
             return balance;
         }
 
-        public void deposit(decimal amount)
+        public void Deposit(decimal amount)
         {
             balance += amount;
         }
         
-        public void withdraw(decimal amount)
+        public void Withdraw(decimal amount)
         {
             if (amount > balance)
             {
-                Console.WriteLine("Insufficient funds");
+                throw new Exception("Insufficient funds");
             }
             else
             {
