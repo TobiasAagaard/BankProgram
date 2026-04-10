@@ -10,7 +10,7 @@ namespace BankProgram
         {
             this.id = id;
             this.name = name;
-            this.accounts = new List<BankAccount>();
+            this.accounts = accounts;
         }
 
         public string CustomerName { get { return name; } private set { name = value;}}
@@ -27,6 +27,16 @@ namespace BankProgram
         public void RemoveAccount(BankAccount account)
         {
             accounts.Remove(account);
+        }
+
+        public string GetCustomerDetails()
+        {
+            string accountDetails = "";
+            foreach (BankAccount account in accounts)
+            {
+                accountDetails += account.GetAccountDetails() + "\n";
+            }
+            return $"Customer name: {name}\nAccounts:\n{accountDetails}";
         }
 
         
