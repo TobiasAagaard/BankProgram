@@ -1,5 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
-
 namespace BankProgram
 {
     class BankAccount
@@ -22,18 +20,18 @@ namespace BankProgram
 
         public void Deposit(decimal amount)
         {
-            balance += amount;
+            Balance += amount;
         }
         
         public void Withdraw(decimal amount)
         {
-            if (amount > balance)
+            if (amount > Balance)
             {
                 throw new Exception("Insufficient funds");
             }
             else
             {
-                balance -= amount;
+                Balance -= amount;
             }
         }
         }
