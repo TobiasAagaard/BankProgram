@@ -7,10 +7,11 @@
             
             List<BankAccount> bankAccounts = new List<BankAccount>
             {
-                new BankAccount(109234, "Tobias Christiansen", 25000.42m),
-                new BankAccount(109235, "Lars Jensen", 15000.00m),
-                new BankAccount(109236, "Mette Nielsen", 30000.75m)
+                new BankAccount(1, "Opsparing", 1000),
+                new BankAccount(2, "Løn", 500),
+                new BankAccount(3, "Investering", 2000)
             };
+
 
 
             void printAccountInfo(List<BankAccount> bankAccounts)
@@ -18,7 +19,7 @@
                 for (int i = 0; i < bankAccounts.Count; i++)
                 {
                     BankAccount account = bankAccounts[i];
-                    Console.WriteLine($"Account holder: {account.Name}, Balance: {account.Balance()} DKK");
+                    Console.WriteLine($"Account holder: {account.AccountName}, Balance: {account.Balance} DKK");
                     
                 }
             }
