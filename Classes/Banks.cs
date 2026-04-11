@@ -12,6 +12,19 @@ namespace BankProgram
         }
 
         public string BankName { get { return name; } private set { name = value; } }
-        public List<Customer> Customers { get { return customers; } private set { customers = value; } }
+        public List<Customer> Customers { get { return customers; } private set { customers = value;}}
+
+        public void AddCustomer(Customer customer)
+        {
+
+            customers.Add(customer);
+        }
+
+        public void RemoveCustomer(Customer customer)
+        {
+            customers.Remove(customer);
+        }
+
+
     }
 }
