@@ -13,12 +13,13 @@
             Customer customer2 = new Customer(2, "Mads Aagaard Christiansen", new List<BankAccount>());
             customer2.AddAccount(new BankAccount(4, "Opsparing", 150000));
 
+            Customer customer3 = new Customer(3, "Mikkel Aagaard Christiansen", new List<BankAccount>());
+            customer3.AddAccount(new BankAccount(5, "konto", 63000.424m));
+
             
 
-            Console.WriteLine(customer1.GetCustomerDetails());
-            Console.WriteLine(customer2.GetCustomerDetails());
-    
-          
+            List<Customer> customers = new List<Customer>() { customer1, customer2, customer3 };
+            Console.WriteLine(Customer.GetAllCustomersDetails(customers));
         }
     }
 }

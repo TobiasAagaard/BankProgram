@@ -39,6 +39,15 @@ namespace BankProgram
             return $"Customer name: {name}\nAccounts:\n{accountDetails}";
         }
 
+       public static string GetAllCustomersDetails(List<Customer> customers)
+        {
+            string allDetails = "";
+            for (int i = 0; i < customers.Count; i++)
+            {
+                allDetails += customers[i].GetCustomerDetails() + "\n";
+            }
+            return allDetails;
+        }
         
     }
 }
