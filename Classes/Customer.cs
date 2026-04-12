@@ -32,9 +32,9 @@ namespace BankProgram
         public string GetCustomerDetails()
         {
             string accountDetails = "";
-            foreach (BankAccount account in accounts)
+            for (int i = 0; i < accounts.Count; i++)
             {
-                accountDetails += account.GetAccountDetails() + "\n";
+                accountDetails += accounts[i].GetAccountDetails() + "\n";
             }
             return $"Customer name: {name}\nAccounts:\n{accountDetails}";
         }
