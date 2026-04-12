@@ -2,32 +2,32 @@ namespace BankProgram
 {
     class Bank
     {
+        private int id;
         private string name;
-        private List<Bank> banks;
         private List<Customer> customers;
 
-        public Bank(string name, List<Bank> banks, List<Customer> customers)
+        public Bank(int id, string name, List<Customer> customers)
         {
+            this.id = id;
             this.name = name;
-            this.banks = banks;
             this.customers = customers;
         }
+
+        public int BankId { get { return id; } private set { id = value; } }
 
         public string BankName { get { return name; } private set { name = value; } }
         public List<Customer> Customers { get { return customers; } private set { customers = value;}}
 
-        public List<Bank> Banks { get { return banks; } private set { banks = value;}}
-
-        public string AddCustomer(Bank bank, Customer customer)
+        public string AddCustomer(Customer customer)
         {
-            if (!banks.Contains(bank))
+            if (customers.Contains(customer))
             {
-                throw new Exception("Bank does not exist");
+                throw new Exception("Customer already exists");
             }
             else {
-            customers.Add(customer);
-            return "Customer added successfully";
-            }ß
+                customers.Add(customer);
+                return "Customer added successfully";
+            }
 
         }
 
@@ -37,30 +37,10 @@ namespace BankProgram
             return "Customer removed successfully";
         }
 
-        public string AddBank(Bank bank)
+        public string GetBankDetails()
         {
-            if (banks.Contains(bank))
-            {
-                throw new Exception("Bank already exists");
-            }
-            else
-            {
-                banks.Add(bank);
-                return "Bank added successfully";
-            }
-        }
-        
-        public string RemoveBank(Bank bank)
-        {
-            if (!banks.Contains(bank))
-            {
-                throw new Exception("Bank deos not exist")
-            }
-            else
-            {
-                banks.Remove(bank);
-                return "Bank removed successfully";
-            }
+
+            return $"Bank Name: {name}, Number of Customers: {customers.Count} \n";
         }
 
     }
