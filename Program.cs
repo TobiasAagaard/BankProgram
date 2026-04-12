@@ -8,35 +8,10 @@ namespace BankProgram
       
         static void Main(string[] args)
         { 
-            List<Bank> banks = new List<Bank>();
+            
             
 
-            string AddBank(string name, List<Customer> customers)
-            {
-                if (banks.Any(bank => bank.BankName == name))
-                {
-                    throw new Exception("Bank already exists");
-                }
-                else
-                {
-                    int id = banks.Count + 1;
-                    banks.Add(new Bank(id, name, customers));
-                    return "Bank added successfully";
-                }
-            }
-
-            string RemoveBank(int id)
-            {
-                if (banks.Any(bank => bank.BankId == id))
-                {
-                    banks.RemoveAll(bank => bank.BankId == id);
-                    return "Bank removed successfully";
-                }
-                else
-                {
-                    throw new Exception("Bank not found");
-                }
-            }
+            List<Bank> banks = new List<Bank>();
             
             Customer customer1 = new Customer(1, "Toibas Aagaard Christiansen", new List<BankAccount>());
             customer1.AddAccount(new BankAccount(1, "Opsparing", 1000));
