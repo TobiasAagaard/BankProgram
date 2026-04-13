@@ -23,7 +23,5 @@ namespace BankProgram
 
         public List<BankAccount> Accounts { get { return accounts;} private set { accounts = value;}}
 
-
-        
     }
 }
