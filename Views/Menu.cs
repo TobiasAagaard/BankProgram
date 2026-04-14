@@ -1,5 +1,6 @@
-namespace BankProgram
+namespace BankProgram.Views
 {
+    using BankProgram.Models;
     class Menu
     {
         public void ShowBanks(List<Bank> banks)
@@ -9,7 +10,6 @@ namespace BankProgram
                 Console.WriteLine($"{i + 1}. {banks[i].BankName}");
             }
         }
-
         public string? GetUserInput() => Console.ReadLine();
     }
 }

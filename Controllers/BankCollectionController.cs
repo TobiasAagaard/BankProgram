@@ -1,5 +1,6 @@
-namespace BankProgram
+namespace BankProgram.Controllers
 {
+    using BankProgram.Models;
     class BankCollectionController
     {
         private List<Bank> banks = new();
