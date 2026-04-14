@@ -8,8 +8,8 @@ namespace BankProgram
         
         static void Main(string[] args)
         { 
-            Menu mainMenu = new Menu();
-            mainMenu.DisplauyMenu();
+            MenuController menuController = new MenuController();
+            menuController.ShowMenu();
         }
     }
 }

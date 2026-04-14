@@ -2,11 +2,14 @@ namespace BankProgram
 {
     class Menu
     {
-        private MenuController menuController = new MenuController();
-
-        public void DisplauyMenu()
+        public void ShowBanks(List<Bank> banks)
         {
-            menuController.ShowMenu();
+            for (int i = 0; i < banks.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {banks[i].BankName}");
+            }
         }
+
+        public string? GetUserInput() => Console.ReadLine();
     }
 }
