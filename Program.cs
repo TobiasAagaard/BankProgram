@@ -5,12 +5,11 @@ namespace BankProgram
     class Program
     {
 
-      
+        
         static void Main(string[] args)
         { 
-
-            List<Bank> banks = new List<Bank>();
-            
+            Menu mainMenu = new Menu();
+            mainMenu.DisplauyMenu();
         }
     }
 }

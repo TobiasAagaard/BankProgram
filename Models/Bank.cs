@@ -14,7 +14,6 @@ namespace BankProgram
         }
 
         public int BankId { get { return id; } private set { id = value; } }
-
         public string BankName { get { return name; } private set { name = value; } }
         public List<Advisor> Advisors { get { return advisors; } private set { advisors = value;}}
 
