@@ -1,41 +1,50 @@
 namespace BankProgram.Controllers
 {
-    using BankProgram.Models;
+    using BankProgram.Services;
     using BankProgram.Views;
 
     class MenuController
     {
         private MainMenu view = new MainMenu();
-    
+        private BankService bankService;
+
+        public MenuController(BankService bankService)
+        {
+            this.bankService = bankService;
+        }
 
         public void ShowMenu()
         {
             bool running = true;
             while (running)
             {
-                List<Bank> banks = bankCollectionController.GetAllBanks();
-                view.ShowBanks(banks);
-                Console.WriteLine("0. Exit");
-                Console.Write("Select your bank: ");
-                string? userInput = view.GetUserInput();
+                var banks = bankService.GetBanks();
+                var bankNames = banks.Select(b => b.BankName).ToList();
 
-                if (userInput == "0")
+                view.ShowOptions(bankNames);
+                view.ShowMessage("0. Exit");
+                view.ShowMessage("Select your bank: ");
+
+                string? input = view.GetUserInput();
+
+                if (input == "0")
                 {
                     running = false;
-                    Console.WriteLine("Exiting the program.");
-                } else if (int.TryParse(userInput, out int choice) && choice > 0 && choice <= banks.Count)
-                {
-                    Bank selectedBank = banks[choice - 1];
-                    BankController bankController = new BankController(selectedBank);
-                    bankController.ShowBankMenu();
                 }
-                else
+                else if (int.TryParse(input, out int choice))
                 {
-                    Console.WriteLine("Invalid selection. Please try again.");
-                }
+                    var bank = bankService.GetBankByIndex(choice - 1);
+                    if (bank != null)
+                    {
+                        BankController bankController = new BankController(bank);
+                        bankController.ShowBankMenu();
+                    }
+                    else
+                    {
+                        view.ShowMessage("Invalid selection. Please try again.");
+                    }
                 }
             }
         }
-        
-       
     }
+}
