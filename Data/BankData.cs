@@ -1,22 +1,31 @@
+using System.Reflection.Metadata;
 using BankProgram.Models;
 
 namespace BankProgram.Data
 {
     class BankData
     {
-        public List<Bank> Banks { get; set; }
-        public List<Advisor> Advisors { get; set; }
-        public List<Customer> Customers { get; set; }
-        public List<BankAccount> BankAccounts { get; set; }
+        public List<Bank> Banks { get; } = new();
+        public List<Advisor> Advisors { get; } = new();
+        public List<Customer> Customers { get; } = new();
+        public List<BankAccount> BankAccounts { get; } = new();
 
         private int nextBankId = 1;
         private int nextAdvisorId = 1;
         private int nextCustomerId = 1;
         private int nextAccountId = 1;
 
+        public int GetNextBankId() => nextBankId++;
+        public int GetNextAdvisorId() => nextAdvisorId++;
+        public int GetNextCustomerId() => nextCustomerId++;
+        public int GetNextAccountId() => nextAccountId++;
+        public BankData(List<Bank> banks)
+        {
+            this.Banks = banks;
+        }
         public BankData()
         {
-            var Nordea = new Bank(GetNextBankId(), "Nordea", new List<Advisor>());
+            Banks.Add(new Bank(GetNextBankId(), "TechColleage Bank", new List<Advisor>(), new List<Customer>()));
         }
     }
 }

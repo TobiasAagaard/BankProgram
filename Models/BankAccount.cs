@@ -14,9 +14,9 @@ namespace BankProgram.Models
             this.balance = balance;
         }
          
-        public string AccountName {get { return name; } private set { name = value; } }
-        public int AccountId { get { return id; } private set { id = value;}}
-        public decimal Balance { get { return balance;} private set { balance = value;}}
+        public string AccountName {get { return name; } set { name = value; } }
+        public int AccountId { get { return id; } set { id = value;}}
+        public decimal Balance { get { return balance;} set { balance = value;}}
 
         }
         
