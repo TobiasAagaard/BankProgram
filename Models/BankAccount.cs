@@ -1,4 +1,4 @@
-namespace BankProgram
+namespace BankProgram.Models
 {
     class BankAccount
     {

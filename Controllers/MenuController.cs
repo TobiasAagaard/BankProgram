@@ -1,6 +1,7 @@
-
-namespace BankProgram
+namespace BankProgram.Controllers
 {
+    using BankProgram.Views;
+
     class MenuController
     {
         private Menu view = new Menu();
