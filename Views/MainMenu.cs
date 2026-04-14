@@ -1,7 +1,7 @@
 namespace BankProgram.Views
 {
     using BankProgram.Models;
-    class Menu
+    class MainMenu
     {
         public void ShowBanks(List<Bank> banks)
         {

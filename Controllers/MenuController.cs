@@ -1,18 +1,41 @@
 namespace BankProgram.Controllers
 {
+    using BankProgram.Models;
     using BankProgram.Views;
 
     class MenuController
     {
-        private Menu view = new Menu();
+        private MainMenu view = new MainMenu();
         private BankCollectionController bankCollectionController = new BankCollectionController();
 
         public void ShowMenu()
         {
-            view.ShowBanks(bankCollectionController.GetAllBanks());
-            string? userInput = view.GetUserInput();
+            bool running = true;
+            while (running)
+            {
+                List<Bank> banks = bankCollectionController.GetAllBanks();
+                view.ShowBanks(banks);
+                Console.WriteLine("0. Exit");
+                Console.Write("Select your bank: ");
+                string? userInput = view.GetUserInput();
+
+                if (userInput == "0")
+                {
+                    running = false;
+                    Console.WriteLine("Exiting the program.");
+                } else if (int.TryParse(userInput, out int choice) && choice > 0 && choice <= banks.Count)
+                {
+                    Bank selectedBank = banks[choice - 1];
+                    BankController bankController = new BankController(selectedBank);
+                    bankController.ShowBankMenu();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid selection. Please try again.");
+                }
+                }
+            }
         }
         
        
     }
-}
