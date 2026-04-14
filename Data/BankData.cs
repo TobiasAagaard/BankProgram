@@ -1,8 +1,6 @@
-using System.Reflection.Metadata;
-using BankProgram.Models;
-
 namespace BankProgram.Data
 {
+    using BankProgram.Models;
     class BankData
     {
         public List<Bank> Banks { get; } = new();

@@ -6,7 +6,7 @@ namespace BankProgram.Controllers
     class MenuController
     {
         private MainMenu view = new MainMenu();
-        private BankCollectionController bankCollectionController = new BankCollectionController();
+    
 
         public void ShowMenu()
         {
