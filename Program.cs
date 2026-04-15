@@ -1,6 +1,8 @@
 ﻿namespace BankProgram
 {
     using BankProgram.Controllers;
+    using BankProgram.Data;
+    using BankProgram.Services;
 
     class Program
     {
@@ -8,8 +10,12 @@
         
         static void Main(string[] args)
         { 
-            MenuController menuController = new MenuController();
-            menuController.ShowMenu();
+            BankData data = new BankData();
+
+            BankService bankService = new BankService(data);
+
+            MenuController menuController = new MenuController(bankService);
+            menuController.ShowMainMenu();
         }
     }
 }

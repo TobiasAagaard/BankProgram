@@ -1,15 +1,22 @@
+using BankProgram.Models;
+
 namespace BankProgram.Views
 {
-    using BankProgram.Models;
-    class MainMenu
+    class MainMenu : BaseView
     {
-        public void ShowBanks(List<Bank> banks)
+        public void MainMenuWelcome()
         {
-            for (int i = 0; i < banks.Count; i++)
+            Console.Clear();
+            ShowMessage("Welcome to Shell Banking!");
+            ShowMessage("Please select a bank:");
+        }
+
+        public void ShowBankList(List<string> bankNames)
+        {
+            for (int i = 0; i < bankNames.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {banks[i].BankName}");
+                ShowMessage($"{i + 1}. {bankNames[i]}");
             }
         }
-        public string? GetUserInput() => Console.ReadLine();
     }
 }
