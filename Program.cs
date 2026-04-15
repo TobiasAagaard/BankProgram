@@ -15,7 +15,7 @@
             BankService bankService = new BankService(data);
 
             MenuController menuController = new MenuController(bankService);
-            menuController.ShowMenu();
+            menuController.ShowMainMenu();
         }
     }
 }

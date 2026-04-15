@@ -1,9 +1,10 @@
 namespace BankProgram.Controllers
 {
+    using BankProgram.Models;
     using BankProgram.Services;
     using BankProgram.Views;
 
-    class MenuController
+    class MenuController : BankMenu
     {
         private MainMenu view = new MainMenu();
         private BankService bankService;
@@ -13,36 +14,27 @@ namespace BankProgram.Controllers
             this.bankService = bankService;
         }
 
-        public void ShowMenu()
+        public void ShowMainMenu()
         {
             bool running = true;
             while (running)
             {
-                var banks = bankService.GetBanks();
-                var bankNames = banks.Select(b => b.BankName).ToList();
-
-                view.ShowOptions(bankNames);
-                view.ShowMessage("0. Exit");
-                view.ShowMessage("Select your bank: ");
-
-                string? input = view.GetUserInput();
-
-                if (input == "0")
+                view.MainMenuWelcome();
+                view.ShowBankList(bankService.GetBanks().Select(b => b.BankName).ToList());
+                string? userInput = view.GetUserInput();
+                if (int.TryParse(userInput, out int bankIndex))
                 {
-                    running = false;
-                }
-                else if (int.TryParse(input, out int choice))
-                {
-                    var bank = bankService.GetBankByIndex(choice - 1);
-                    if (bank != null)
+                    Bank? selectedBank = bankService.GetBankByIndex(bankIndex - 1);
+                    if (selectedBank != null)
                     {
-                        BankController bankController = new BankController(bank);
+                        BankController bankController = new BankController(selectedBank);
                         bankController.ShowBankMenu();
                     }
                     else
                     {
-                        view.ShowMessage("Invalid selection. Please try again.");
+                        view.ShowError("Invalid bank selection. Please try again.");
                     }
+
                 }
             }
         }

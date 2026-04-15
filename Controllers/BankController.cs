@@ -18,8 +18,9 @@ namespace BankProgram.Controllers
             bool running = true;
             while (running)
             {
-                view.ShowBankMenu(bank);
+                view.BankMenuWelcome(bank.BankName);
                 string? userInput = view.GetUserInput();
+                
             }
         }
     }

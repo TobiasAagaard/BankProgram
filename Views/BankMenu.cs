@@ -1,16 +1,11 @@
 namespace BankProgram.Views
 {
-    using BankProgram.Models;
-    using BankProgram.Controllers;
-
-    class BankMenu
+    class BankMenu : BaseView
     {
-        public void ShowBankMenu(Bank bank)
+        public void BankMenuWelcome(string bankName)
         {
             Console.Clear();
-            Console.WriteLine($"Welcome to {bank.BankName}!");
-            Console.WriteLine("Here are our advisors:");
+            ShowMessage($"Welcome to {bankName}!");
         }
-        public string? GetUserInput() => Console.ReadLine();
     }
 }
