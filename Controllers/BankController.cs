@@ -19,8 +19,12 @@ namespace BankProgram.Controllers
             while (running)
             {
                 view.BankMenuWelcome(bank.BankName);
+                view.ExitOption("Return to main menu");
                 string? userInput = view.GetUserInput();
-                
+                if (userInput == "0")
+                {
+                    running = false;
+                }
             }
         }
     }

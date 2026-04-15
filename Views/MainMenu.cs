@@ -2,7 +2,7 @@ using BankProgram.Models;
 
 namespace BankProgram.Views
 {
-    class MainMenu : BankMenu
+    class MainMenu : BaseView
     {
         public void MainMenuWelcome()
         {

@@ -21,6 +21,7 @@ namespace BankProgram.Controllers
             {
                 view.MainMenuWelcome();
                 view.ShowBankList(bankService.GetBanks().Select(b => b.BankName).ToList());
+                view.ExitOption();
                 string? userInput = view.GetUserInput();
                 if (int.TryParse(userInput, out int bankIndex))
                 {
@@ -30,9 +31,14 @@ namespace BankProgram.Controllers
                         BankController bankController = new BankController(selectedBank);
                         bankController.ShowBankMenu();
                     }
+                    else if (userInput == "0")
+                    {
+                        running = false;
+                    }
                     else
                     {
                         view.ShowError("Invalid bank selection. Please try again.");
+                        view.GetUserKey();
                     }
 
                 }
