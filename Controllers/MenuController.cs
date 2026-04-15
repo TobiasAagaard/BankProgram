@@ -1,8 +1,8 @@
-namespace BankProgram.Controllers
+namespace ShellBank.Controllers
 {
-    using BankProgram.Models;
-    using BankProgram.Services;
-    using BankProgram.Views;
+    using ShellBank.Models;
+    using ShellBank.Services;
+    using ShellBank.Views;
 
     class MenuController : BankMenu
     {

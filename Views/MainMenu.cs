@@ -1,13 +1,11 @@
-using BankProgram.Models;
-
-namespace BankProgram.Views
+namespace ShellBank.Views
 {
     class MainMenu : BaseView
     {
         public void MainMenuWelcome()
         {
             Console.Clear();
-            ShowMessage("Welcome to Shell Banking!");
+            ShowMessage("Welcome to ShellBank!");
             ShowMessage("Please select a bank:");
         }
 

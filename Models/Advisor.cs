@@ -1,4 +1,4 @@
-namespace BankProgram.Models
+namespace ShellBank.Models
 {
     class Advisor
     {

@@ -1,4 +1,4 @@
-namespace BankProgram.Views
+namespace ShellBank.Views
 {
     class BankMenu : BaseView
     {

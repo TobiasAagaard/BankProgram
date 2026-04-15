@@ -1,8 +1,8 @@
-﻿namespace BankProgram
+﻿namespace ShellBank
 {
-    using BankProgram.Controllers;
-    using BankProgram.Data;
-    using BankProgram.Services;
+    using ShellBank.Controllers;
+    using ShellBank.Data;
+    using ShellBank.Services;
 
     class Program
     {

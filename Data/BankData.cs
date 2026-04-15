@@ -1,6 +1,6 @@
-namespace BankProgram.Data
+namespace ShellBank.Data
 {
-    using BankProgram.Models;
+    using ShellBank.Models;
     class BankData
     {
         public List<Bank> Banks { get; } = new();

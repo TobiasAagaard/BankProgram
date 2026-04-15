@@ -1,4 +1,4 @@
-# BankProgram
+# ShellBank
 A simple bank CLI application built in C# that simulates core banking operations such as managing customers and accounts.
 Designed as a hands-on exercise to practice OOP principles like encapsulation and class design.
 
