@@ -23,7 +23,9 @@ namespace ShellBank.Views
         
         public void ShowError(string errorMessage)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(errorMessage);
+            Console.ResetColor();
         }
     }
 }
