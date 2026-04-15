@@ -24,6 +24,7 @@ namespace ShellBank.Data
         public BankData()
         {
             Banks.Add(new Bank(GetNextBankId(), "TechColleage Bank", new List<Advisor>(), new List<Customer>()));
+            Banks.Add(new Bank(GetNextBankId(), "Danske Bank", new List<Advisor>(), new List<Customer>()));
         }
     }
 }
