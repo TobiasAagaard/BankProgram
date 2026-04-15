@@ -1,7 +1,7 @@
-namespace BankProgram.Controllers
+namespace ShellBank.Controllers
 {
-    using BankProgram.Models;
-    using BankProgram.Views;
+    using ShellBank.Models;
+    using ShellBank.Views;
 
     class BankController
     {

@@ -1,7 +1,7 @@
-namespace BankProgram.Services
+namespace ShellBank.Services
 {
-    using BankProgram.Models;
-    using BankProgram.Data;
+    using ShellBank.Models;
+    using ShellBank.Data;
     class BankService
     {
         private BankData data;
