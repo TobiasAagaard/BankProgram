@@ -16,9 +16,9 @@ namespace ShellBank.Views
             Console.WriteLine(message);
         }
 
-        public void ShowExitMessage(string message)
+        public void ShowExitMessage()
         {
-            Console.WriteLine("Thank you for using Shell Banking. Goodbye!");
+            Console.WriteLine("Thank you for using ShellBank. Goodbye!");
         }
         
         public void ShowError(string errorMessage)
