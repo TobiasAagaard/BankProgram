@@ -1,5 +1,6 @@
 namespace ShellBank.Controllers
 {
+    using System.Formats.Asn1;
     using ShellBank.Models;
     using ShellBank.Services;
     using ShellBank.Views;
@@ -23,17 +24,22 @@ namespace ShellBank.Controllers
                 view.ShowBankList(bankService.GetBanks().Select(b => b.BankName).ToList());
                 view.ExitOption();
                 string? userInput = view.GetUserInput();
-                if (int.TryParse(userInput, out int bankIndex))
+
+                if (userInput == "0")
+                {
+                    running = false;
+                    view.ShowExitMessage();
+                    break;
+                }
+                else if (int.TryParse(userInput, out int bankIndex))
                 {
                     Bank? selectedBank = bankService.GetBankByIndex(bankIndex - 1);
+
+                   
                     if (selectedBank != null)
                     {
                         BankController bankController = new BankController(selectedBank);
                         bankController.ShowBankMenu();
-                    }
-                    else if (userInput == "0")
-                    {
-                        running = false;
                     }
                     else
                     {
