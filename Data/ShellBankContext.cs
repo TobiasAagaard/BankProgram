@@ -6,9 +6,11 @@ namespace ShellBank.Data
     class ShellBankContext : DbContext
     {
         public DbSet<Bank> Banks { get; set; }
-        public DbSet<Advisor> Advisors { get; set; }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<BankAccount> BankAccounts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<AdvisorProfile> Advisors { get; set; }
+        public DbSet<CustomerProfile> Customers { get; set; }
+        public DbSet<Account> BankAccounts { get; set; }
+        public DbSet<AccountAccess> AccountAccesses { get; set; }
 
         private readonly string _dbPath;
 

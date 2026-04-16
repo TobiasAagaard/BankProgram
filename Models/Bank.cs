@@ -2,19 +2,13 @@ namespace ShellBank.Models
 {
     class Bank
     {
-        public Bank(int id, string name, List<Advisor> advisors, List<Customer> customers)
-        {
-            this.BankId = id;
-            this.BankName = name;
-            this.Advisors = advisors ?? new List<Advisor>();
-            this.Customers = customers ?? new List<Customer>();
-          
-        }
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string CreatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-        public int BankId { get; private set;}
-        public string BankName { get ; set; }
-        public List<Advisor> Advisors { get; set; }
-        public List<Customer> Customers { get; set; }
+        public ICollection<User> Users { get; set; } = new List<User>();
+        public ICollection<CustomerProfile> CustomerProfiles { get; set; } = new List<CustomerProfile>();
+        public ICollection<AdvisorProfile> AdvisorProfiles { get; set; } = new List<AdvisorProfile>();
 
     }
 }
