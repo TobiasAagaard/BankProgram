@@ -1,6 +1,7 @@
 # Build outputs
 [Bb]in/
 [Oo]bj/
+database/
 
 # User-specific files
 *.user
