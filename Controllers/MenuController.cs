@@ -5,7 +5,7 @@ namespace ShellBank.Controllers
     using ShellBank.Services;
     using ShellBank.Views;
 
-    class MenuController : BankMenu
+    class MenuController 
     {
         private MainMenu view = new MainMenu();
         private BankService bankService;
