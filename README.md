@@ -1,5 +1,5 @@
 # ShellBank
-A CLI bank application built in C# (.NET 10) that simulates core banking operations. Designed as a hands-on OOP exercise covering encapsulation, class design, and MVC architecture, with a SQLite-backed persistent data layer via Entity Framework Core.
+A CLI bank application built in C# (.NET 10) that simulates core banking operations. Designed as a OOP exercise covering encapsulation, class design, and MVC architecture, with a SQLite-backed persistent data layer via Entity Framework Core.
 
 ## Features
 - Create and navigate between multiple banks
