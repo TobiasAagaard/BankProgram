@@ -19,10 +19,8 @@ namespace ShellBank.Models
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
+        [MaxLength(72)]
         public string PasswordHash { get; set; } = string.Empty;
-
-        [Required]
-        public string PasswordSalt { get; set; } = string.Empty;
 
         public Role UserRole { get; set; }
         public bool IsActive { get; set; } = true;

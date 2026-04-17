@@ -10,9 +10,9 @@
         
         static void Main(string[] args)
         { 
-            ShellBankContext shellBankContext = new ShellBankContext();
+            ShellBankContext ctx = new ShellBankContext();
 
-            BankService bankService = new BankService(shellBankContext);
+            BankService bankService = new BankService(ctx);
 
             MenuController menuController = new MenuController(bankService);
             menuController.ShowMainMenu();
