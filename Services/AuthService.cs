@@ -14,7 +14,7 @@ namespace ShellBank.Services
     {
         this.data = data;
     }
-    public (bool Ok, string? Error) RegisterAdvisor(string email, string password, int bankId)
+    public (bool Ok, string? Error) RegisterAdvisor(string email, string password, int bankId, bool isAdmin, string firstName, string lastName, string displayName)
         {
             (bool ok, string? error) check = PasswordValidation.ValidatePassword(password);
             if (!check.ok)
@@ -31,9 +31,50 @@ namespace ShellBank.Services
                 Email = email,
                 PasswordHash = BC.HashPassword(password),
                 UserRole = Role.Advisor,
-                BankId = bankId
+                BankId = bankId,
+            };
+            AdvisorProfile advisorProfile = new AdvisorProfile
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                IsAdmin = isAdmin,
+                User = user
             };
             data.Users.Add(user);
+            data.Advisors.Add(advisorProfile);
+            data.SaveChanges();
+            return (true, null);
+        }
+
+    public (bool Ok, string? Error) RegisterCustomer(string cpr, string password, int bankId, string firstName, string lastName)
+        {
+
+            (bool ok, string ? error) check = PasswordValidation.ValidatePassword(password);
+            if (!check.ok)
+            {
+                return (false, check.error);
+            }
+            if (data.Users.Any(u => u.CPR == cpr))
+            {
+                return (false, "CPR is already in use.");
+            }
+
+            User user = new User
+            {
+                CPR = cpr,
+                PasswordHash = BC.HashPassword(password),
+                UserRole = Role.Customer,
+                BankId = bankId,
+            };
+            CustomerProfile customerProfile = new CustomerProfile
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                User = user
+            };
+            
+            data.Users.Add(user);
+            data.Customers.Add(customerProfile);
             data.SaveChanges();
             return (true, null);
         }
