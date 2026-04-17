@@ -23,7 +23,7 @@ namespace ShellBank.Services
             }
             if (data.Users.Any(u => u.Email == email))
             {
-                return (false, "Email is already in use.");
+                return (false, "This Advisor already exists.");
             }
 
             User user = new User
@@ -56,7 +56,7 @@ namespace ShellBank.Services
             }
             if (data.Users.Any(u => u.CPR == cpr))
             {
-                return (false, "CPR is already in use.");
+                return (false, "This user already exists. Contact your bank for assistance.");
             }
 
             User user = new User
