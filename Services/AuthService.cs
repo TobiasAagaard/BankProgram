@@ -14,7 +14,29 @@ namespace ShellBank.Services
     {
         this.data = data;
     }
+    public (bool Ok, string? Error) RegisterAdvisor(string email, string password, int bankId)
+        {
+            (bool ok, string? error) check = PasswordValidation.ValidatePassword(password);
+            if (!check.ok)
+            {
+                return (false, check.error);
+            }
+            if (data.Users.Any(u => u.Email == email))
+            {
+                return (false, "Email is already in use.");
+            }
 
+            User user = new User
+            {
+                Email = email,
+                PasswordHash = BC.HashPassword(password),
+                UserRole = Role.Advisor,
+                BankId = bankId
+            };
+            data.Users.Add(user);
+            data.SaveChanges();
+            return (true, null);
+        }
     public User? AuthenticateAdvisor(string email, string password)
     {
         User? user = data.Users
