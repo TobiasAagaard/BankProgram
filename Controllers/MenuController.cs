@@ -21,7 +21,7 @@ namespace ShellBank.Controllers
             while (running)
             {
                 view.MainMenuWelcome();
-                view.ShowBankList(bankService.GetBanks().Select(b => b.BankName).ToList());
+                view.ShowBankList(bankService.GetAllBanks().Select(b => b.Name).ToList());
                 view.ExitOption();
                 string? userInput = view.GetUserInput();
 
@@ -33,7 +33,7 @@ namespace ShellBank.Controllers
                 }
                 else if (int.TryParse(userInput, out int bankIndex))
                 {
-                    Bank? selectedBank = bankService.GetBankByIndex(bankIndex - 1);
+                    Bank? selectedBank = bankService.GetAllBanks().ElementAtOrDefault(bankIndex - 1);
 
                    
                     if (selectedBank != null)

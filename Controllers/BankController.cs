@@ -18,7 +18,7 @@ namespace ShellBank.Controllers
             bool running = true;
             while (running)
             {
-                view.BankMenuWelcome(bank.BankName);
+                view.BankMenuWelcome(bank.Name);
                 view.ExitOption("Return to main menu");
                 string? userInput = view.GetUserInput();
                 if (userInput == "0")
