@@ -24,6 +24,36 @@ namespace ShellBank.Data
         {
             optionsBuilder.UseSqlite($"Data Source={_dbPath}");
         }
-       
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasIndex(u => u.Email).IsUnique();
+                entity.HasIndex(u => u.CPR).IsUnique();
+            });
+
+            modelBuilder.Entity<Account>(entity =>
+            {
+                entity.HasIndex(a => a.AccountNumber).IsUnique();
+                entity.Property(a => a.Balance).HasPrecision(18, 2);
+            });
+
+            modelBuilder.Entity<CustomerProfile>(entity =>
+            {
+                entity.HasOne(cp => cp.Guardian)
+                    .WithMany(g => g.Dependents)
+                    .HasForeignKey(cp => cp.GuardianCustomerId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<AccountAccess>(entity =>
+            {
+                entity.HasOne(aa => aa.Customer)
+                    .WithMany(c => c.AccountAccesses)
+                    .HasForeignKey(aa => aa.CustomerId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+        }
     }
 }

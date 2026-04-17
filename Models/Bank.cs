@@ -1,14 +1,22 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ShellBank.Models
 {
     class Bank
     {
         public int Id { get; set; }
+
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; } = string.Empty;
-        public string CreatedAt { get; set; } = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        [Required]
+        [StringLength(4, MinimumLength = 4)]
+        public string? RegistrationNumber { get; set; }
 
-        public ICollection<User> Users { get; set; } = new List<User>();
-        public ICollection<CustomerProfile> CustomerProfiles { get; set; } = new List<CustomerProfile>();
-        public ICollection<AdvisorProfile> AdvisorProfiles { get; set; } = new List<AdvisorProfile>();
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+        public ICollection<User> Users { get; set; } = [];
+        public ICollection<CustomerProfile> CustomerProfiles { get; set; } = [];
+        public ICollection<AdvisorProfile> AdvisorProfiles { get; set; } = [];
     }
 }
