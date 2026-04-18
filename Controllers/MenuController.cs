@@ -20,7 +20,9 @@ namespace ShellBank.Controllers
             bool running = true;
             while (running)
             {
-                
+                var role = new RoleSelctionMenu();
+                role.PromptRoleSelction();
+                Console.ReadLine();
             }
         }
     }
