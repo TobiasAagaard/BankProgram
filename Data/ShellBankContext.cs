@@ -20,6 +20,7 @@ namespace ShellBank.Data
             Directory.CreateDirectory(Path.GetDirectoryName(_dbPath)!);
         }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite($"Data Source={_dbPath}");
@@ -54,6 +55,14 @@ namespace ShellBank.Data
                     .HasForeignKey(aa => aa.CustomerId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+            modelBuilder.Entity<Bank>().HasData(
+                new Bank
+                {
+                    Id = 1,
+                    Name = "Tech College Bank",
+                    RegistrationNumber = "2293"
+                }
+            );
         }
     }
 }
