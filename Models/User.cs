@@ -11,7 +11,6 @@ namespace ShellBank.Models
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
         [StringLength(10, MinimumLength = 10)]
         public string CPR { get; set; } = string.Empty;
 
@@ -19,10 +18,8 @@ namespace ShellBank.Models
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
+        [MaxLength(72)]
         public string PasswordHash { get; set; } = string.Empty;
-
-        [Required]
-        public string PasswordSalt { get; set; } = string.Empty;
 
         public Role UserRole { get; set; }
         public bool IsActive { get; set; } = true;
