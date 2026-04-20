@@ -22,7 +22,7 @@ namespace ShellBank.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal Balance { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public CustomerProfile? Customer { get; set; }
         public ICollection<AccountAccess> AccountAccesses { get; set; } = new List<AccountAccess>();

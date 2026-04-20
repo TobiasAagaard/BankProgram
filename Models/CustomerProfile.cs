@@ -27,7 +27,7 @@ namespace ShellBank.Models
         [StringLength(10, MinimumLength = 10)]
         public string? Username { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [NotMapped]
         public bool IsMinor => GuardianCustomerId.HasValue;

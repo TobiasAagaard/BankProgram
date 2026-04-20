@@ -13,7 +13,7 @@ namespace ShellBank.Models
         [StringLength(4, MinimumLength = 4)]
         public string? RegistrationNumber { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public ICollection<User> Users { get; set; } = [];
         public ICollection<CustomerProfile> CustomerProfiles { get; set; } = [];

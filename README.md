@@ -23,4 +23,4 @@ A CLI bank application built in C# (.NET 10) that simulates core banking operati
 To run the application in dev mode use the following command:
 ```dotnet run -- --dev
 ```
-This will make you able to seed the database with data, witch is useful for starting the application to be able to create bank, customer and advisors from the beginning. 
+This feature is intended for the first-time setup of the application. It allows you to quickly create a bank and users (either as customers or advisors) by seeding initial data into the database.

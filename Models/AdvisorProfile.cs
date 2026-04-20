@@ -23,7 +23,7 @@ namespace ShellBank.Models
         // Stored as a bool instead of a fragile string comparison
         public bool IsAdmin { get; set; } = false;
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public Bank? Bank { get; set; }
         public User? User { get; set; }

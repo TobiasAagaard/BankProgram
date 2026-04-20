@@ -16,13 +16,23 @@ namespace ShellBank.Services
             return data.Banks.ToList();
         }
 
-        public Bank CreateBank(string name, string? registrationNumber = null)
+        public Bank CreateBank(string name, string? registrationNumber)
         {
-            if (registrationNumber == null)
+            DateTime now = DateTime.Now;
+            if (registrationNumber == "")
             {
                 registrationNumber = GenerateUniqueRegistrationNumber();
             }
-            Bank newBank = new Bank { Name = name, RegistrationNumber = registrationNumber, CreatedAt = DateTime.UtcNow };
+
+            
+            Bank newBank = new Bank { Name = name, RegistrationNumber = registrationNumber, CreatedAt = new DateTime(
+            now.Year,
+            now.Month,
+            now.Day,
+            now.Hour,
+            now.Minute,
+            now.Second) };
+            
             data.Banks.Add(newBank);
             data.SaveChanges();
             return newBank;

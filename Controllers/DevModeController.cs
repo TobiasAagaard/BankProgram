@@ -23,7 +23,8 @@ namespace ShellBank.Controllers
             {
                 case DevModeView.DevModeOption.CreateBank:
                     string bankName = AnsiConsole.Ask<string>("Enter bank name:");
-                    string registrationNumber = AnsiConsole.Ask<string>("Enter registration number:");
+                    Console.Write("Enter Registraion Number (or press Enter to auto-generate): ");
+                    string? registrationNumber = Console.ReadLine();
                     Bank newBank = bankService.CreateBank(bankName, registrationNumber);
                     AnsiConsole.MarkupLine($"[green]Bank '{newBank.Name}' created successfully![/]");
                     AnsiConsole.MarkupLine($"[green]Registration Number: {newBank.RegistrationNumber}[/]");
