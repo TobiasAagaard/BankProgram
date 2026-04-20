@@ -31,7 +31,7 @@ namespace ShellBank.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(u => u.Email).IsUnique();
-                entity.HasIndex(u => u.CPR).IsUnique();
+                entity.HasIndex(u => u.Username).IsUnique();
             });
 
             modelBuilder.Entity<Account>(entity =>
@@ -60,7 +60,8 @@ namespace ShellBank.Data
                 {
                     Id = 1,
                     Name = "Tech College Bank",
-                    RegistrationNumber = "2293"
+                    RegistrationNumber = "2293",
+                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                 }
             );
         }

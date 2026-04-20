@@ -34,10 +34,9 @@ namespace ShellBank.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     BankId = table.Column<int>(type: "INTEGER", nullable: false),
                     Email = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    CPR = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false),
+                    Username = table.Column<string>(type: "TEXT", maxLength: 72, nullable: false),
                     PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false),
-                    PasswordSalt = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", maxLength: 72, nullable: false),
                     UserRole = table.Column<int>(type: "INTEGER", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
@@ -181,6 +180,11 @@ namespace ShellBank.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Banks",
+                columns: new[] { "Id", "CreatedAt", "Name", "RegistrationNumber" },
+                values: new object[] { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Tech College Bank", "2293" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AccountAccesses_AccountId",
                 table: "AccountAccesses",
@@ -238,15 +242,15 @@ namespace ShellBank.Migrations
                 column: "BankId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_CPR",
-                table: "Users",
-                column: "CPR",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Username",
+                table: "Users",
+                column: "Username",
                 unique: true);
         }
 

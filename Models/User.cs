@@ -11,8 +11,8 @@ namespace ShellBank.Models
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
-        [StringLength(10, MinimumLength = 10)]
-        public string CPR { get; set; } = string.Empty;
+        [MaxLength(72)]
+        public string Username { get; set; } = string.Empty;
 
         [MaxLength(20)]
         public string PhoneNumber { get; set; } = string.Empty;
