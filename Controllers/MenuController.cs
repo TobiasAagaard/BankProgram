@@ -1,6 +1,5 @@
 namespace ShellBank.Controllers
 {
-    using System.Formats.Asn1;
     using ShellBank.Models;
     using ShellBank.Services;
     using ShellBank.Views;
@@ -20,9 +19,10 @@ namespace ShellBank.Controllers
             bool running = true;
             while (running)
             {
-                var role = new RoleSelctionMenu();
+                RoleSelctionMenu role = new RoleSelctionMenu();
                 role.PromptRoleSelction();
-                Console.ReadLine();
+                BankSelectionMenu bankMenu = new BankSelectionMenu();
+                Bank? selectedBank = bankMenu.PromptBankSelection(bankService.GetAllBanks());
             }
         }
     }
