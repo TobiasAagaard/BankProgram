@@ -27,6 +27,11 @@ namespace ShellBank.Controllers
                 case DevModeView.DevModeOption.CreateBank:
                     string bankName = AnsiConsole.Ask<string>("Enter bank name:");
                     string registrationNumber = AnsiConsole.Ask<string>("Enter registration number (leave blank for auto-generation)", "");
+                    if (Regex.IsMatch(registrationNumber, "[A-Za-z]"))
+                    {
+                        AnsiConsole.MarkupLine("[red]Registration number must be numeric. Auto-generating registration number.[/]");
+                        break;
+                    }
                     if (!string.IsNullOrEmpty(registrationNumber) && (Convert.ToInt32(registrationNumber) < 1000 || Convert.ToInt32(registrationNumber) > 9999))
                     {
                         AnsiConsole.MarkupLine("[red]Registration number must be a 4-digit number. Auto-generating registration number.[/]");
