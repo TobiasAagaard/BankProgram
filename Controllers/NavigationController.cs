@@ -4,12 +4,12 @@ namespace ShellBank.Controllers
     using ShellBank.Services;
     using ShellBank.Views;
 
-    class MenuController 
+    class NavigationController 
     {
         
         private BankService bankService;
 
-        public MenuController(BankService bankService)
+        public NavigationController(BankService bankService)
         {
             this.bankService = bankService;
         }
