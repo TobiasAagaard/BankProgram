@@ -25,7 +25,7 @@ namespace ShellBank.Models
         public DateTime? DateOfBirth { get; set; }
 
         [StringLength(10, MinimumLength = 10)]
-        public string? CPR { get; set; }
+        public string? Username { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

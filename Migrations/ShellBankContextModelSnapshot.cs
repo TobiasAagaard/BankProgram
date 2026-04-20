@@ -165,10 +165,6 @@ namespace ShellBank.Migrations
                     b.Property<int>("BankId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CPR")
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -190,6 +186,10 @@ namespace ShellBank.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(10)
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

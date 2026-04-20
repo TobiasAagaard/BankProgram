@@ -11,8 +11,8 @@ using ShellBank.Data;
 namespace ShellBank.Migrations
 {
     [DbContext(typeof(ShellBankContext))]
-    [Migration("20260420072748_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260420174543_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -168,10 +168,6 @@ namespace ShellBank.Migrations
                     b.Property<int>("BankId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CPR")
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -193,6 +189,10 @@ namespace ShellBank.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(10)
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
