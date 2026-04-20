@@ -46,7 +46,7 @@ namespace ShellBank.Services
             return (true, null);
         }
 
-    public (bool Ok, string? Error) RegisterCustomer(string cpr, string password, int bankId, string firstName, string lastName)
+    public (bool Ok, string? Error) RegisterCustomer(string username, string password, int bankId, string firstName, string lastName)
         {
 
             (bool ok, string ? error) check = PasswordValidation.ValidatePassword(password);
@@ -54,14 +54,14 @@ namespace ShellBank.Services
             {
                 return (false, check.error);
             }
-            if (data.Users.Any(u => u.CPR == cpr))
+            if (data.Users.Any(u => u.Username == username))
             {
                 return (false, "This user already exists. Contact your bank for assistance.");
             }
 
             User user = new User
             {
-                CPR = cpr,
+                Username = username,
                 PasswordHash = BC.HashPassword(password),
                 UserRole = Role.Customer,
                 BankId = bankId,
@@ -101,10 +101,10 @@ namespace ShellBank.Services
         return user;
     }
 
-    public User? AuthenticateCustomer(string cpr, string password)
+    public User? AuthenticateCustomer(string username, string password)
     {
         User? user = data.Users
-            .FirstOrDefault(u => u.CPR == cpr &&
+            .FirstOrDefault(u => u.Username == username &&
                                  u.UserRole == Role.Customer &&
                                  u.IsActive &&
                                  !u.IsDeleted);

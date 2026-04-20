@@ -142,6 +142,15 @@ namespace ShellBank.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Banks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Name = "Tech College Bank",
+                            RegistrationNumber = "2293"
+                        });
                 });
 
             modelBuilder.Entity("ShellBank.Models.CustomerProfile", b =>
@@ -204,11 +213,6 @@ namespace ShellBank.Migrations
                     b.Property<int>("BankId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CPR")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -236,14 +240,19 @@ namespace ShellBank.Migrations
                     b.Property<int>("UserRole")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(72)
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BankId");
 
-                    b.HasIndex("CPR")
+                    b.HasIndex("Email")
                         .IsUnique();
 
-                    b.HasIndex("Email")
+                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Users");
