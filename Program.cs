@@ -19,8 +19,16 @@
             BankService bankService = new BankService(ctx);
             AuthService authService = new AuthService(ctx);
 
-             NavigationController navigationController = new NavigationController(bankService);
-            navigationController.ShowMainMenu();
+            if (isDevMode)
+            {
+                DevModeController devModeController = new DevModeController(bankService);
+                devModeController.ShowDevModeMenu();
+            }
+            else
+            {
+                NavigationController navigationController = new NavigationController(bankService);
+                navigationController.ShowMainMenu();
+            }
         }
     }
 }

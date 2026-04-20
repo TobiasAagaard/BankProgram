@@ -15,6 +15,7 @@ namespace ShellBank.Views
 
         public DevModeOption PromptDevModeOption()
         {
+            Console.Clear();
             AnsiConsole.Write(new Rule("[steelblue1]Developer Mode[/]").RuleStyle("grey").Centered());
             Console.WriteLine();
 

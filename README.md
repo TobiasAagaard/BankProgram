@@ -18,4 +18,3 @@ A CLI bank application built in C# (.NET 10) that simulates core banking operati
    dotnet build
    dotnet run
    ```
-
