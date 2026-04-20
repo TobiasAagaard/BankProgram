@@ -1,5 +1,6 @@
 namespace ShellBank.Controllers
 {
+    using System.Text.RegularExpressions;
     using ShellBank.Models;
     using ShellBank.Services;
     using ShellBank.Views;
@@ -16,6 +17,7 @@ namespace ShellBank.Controllers
 
         public void ShowDevModeMenu()
         {
+
             DevModeView view = new DevModeView();
             DevModeView.DevModeOption option = view.PromptDevModeOption();
 
@@ -23,8 +25,18 @@ namespace ShellBank.Controllers
             {
                 case DevModeView.DevModeOption.CreateBank:
                     string bankName = AnsiConsole.Ask<string>("Enter bank name:");
-                    Console.Write("Enter Registraion Number (or press Enter to auto-generate): ");
-                    string? registrationNumber = Console.ReadLine();
+                    string registrationNumber = AnsiConsole.Ask<string>("Enter registration number (leave blank for auto-generation)", "");
+                    if (Regex.IsMatch(registrationNumber, "[A-Za-z]"))
+                    {
+                        AnsiConsole.MarkupLine("[red]Registration number must be numeric. Auto-generating registration number.[/]");
+                        break;
+                    }
+                    if (!string.IsNullOrEmpty(registrationNumber) && (Convert.ToInt32(registrationNumber) < 1000 || Convert.ToInt32(registrationNumber) > 9999))
+                    {
+                        AnsiConsole.MarkupLine("[red]Registration number must be a 4-digit number. Auto-generating registration number.[/]");
+                        registrationNumber = "";
+                    }
+                    
                     Bank newBank = bankService.CreateBank(bankName, registrationNumber);
                     AnsiConsole.MarkupLine($"[green]Bank '{newBank.Name}' created successfully![/]");
                     AnsiConsole.MarkupLine($"[green]Registration Number: {newBank.RegistrationNumber}[/]");
