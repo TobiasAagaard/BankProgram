@@ -26,7 +26,7 @@
             }
             else
             {
-                NavigationController navigationController = new NavigationController(bankService);
+                NavigationController navigationController = new NavigationController(bankService, authService);
                 navigationController.ShowMainMenu();
             }
         }

@@ -54,7 +54,7 @@ namespace ShellBank.Services
             {
                 return (false, check.error);
             }
-            if (data.Users.Any(u => u.Username == username))
+            if (data.Users.Any(u => u.Username == username && u.BankId == bankId))
             {
                 return (false, "This user already exists. Contact your bank for assistance.");
             }
@@ -101,11 +101,12 @@ namespace ShellBank.Services
         return user;
     }
 
-    public User? AuthenticateCustomer(string username, string password)
+    public User? AuthenticateCustomer(int bankId, string username, string password)
     {
         User? user = data.Users
             .FirstOrDefault(u => u.Username == username &&
                                  u.UserRole == Role.Customer &&
+                                 u.BankId == bankId &&
                                  u.IsActive &&
                                  !u.IsDeleted);
 
