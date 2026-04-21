@@ -39,7 +39,7 @@ namespace ShellBank.Controllers
         public void HandleCustomerFlow()
         {
             List<Bank> Banks = bankService.GetAllBanks();
-            var bank = new BankSelectionMenu().PromptBankSelection(Banks);
+            Bank? bank = new BankSelectionMenu().PromptBankSelection(Banks);
             if (bank == null) return;
 
             while (true)
