@@ -1,6 +1,6 @@
 namespace ShellBank.Services
 {
-    using Microsoft.EntityFrameworkCore;
+  
     using BC = BCrypt.Net.BCrypt;
     using ShellBank.Models;
     using ShellBank.Data;
@@ -46,7 +46,7 @@ namespace ShellBank.Services
             return (true, null);
         }
 
-    public (bool Ok, string? Error) RegisterCustomer(string email, string password, int bankId, string firstName, string lastName, DateTime? dateOfBirth)
+    public (bool Ok, string? Error) RegisterCustomer(string email, string password, int bankId, string firstName, string lastName, string phoneNumber, DateTime? dateOfBirth)
         {
 
             (bool ok, string ? error) check = PasswordValidation.ValidatePassword(password);
@@ -78,11 +78,12 @@ namespace ShellBank.Services
 
             CustomerProfile customerProfile = new CustomerProfile
             {
+                BankId = bankId,
                 FirstName = firstName,
                 LastName = lastName,
                 User = user,
                 DateOfBirth = dateOfBirth,
-
+                PhoneNumber = phoneNumber,
             };
             
             data.Users.Add(user);
