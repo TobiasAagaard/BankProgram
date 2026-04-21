@@ -39,17 +39,6 @@ namespace ShellBank.Controllers
                 case DevModeView.DevModeOption.CreateCustomer:
                     CreateCustomerView createCustomerView = new CreateCustomerView();
                     (int bankId, string email, string password, string verifiedPassword, string firstName, string lastName, string phoneNumber, DateTime? dateOfBirth) = createCustomerView.PromptCustomerDetails();
-                    while (password != verifiedPassword || !PasswordValidation.ValidatePassword(password).Ok)
-                    {
-                        if (password != verifiedPassword)
-                        {
-                            AnsiConsole.MarkupLine("[red]Passwords do not match. Please try again.[/]");
-                        }
-                        else if (!PasswordValidation.ValidatePassword(password).Ok)
-                        {
-                            AnsiConsole.MarkupLine("[red]The password must be at least 8 characters long and contain a mix of uppercase, lowercase, numbers, and special characters. Please try again.[/]");
-                        }
-                    }
                     AuthService authService = new AuthService(new Data.ShellBankContext());
                     var result = authService.RegisterCustomer(email, password, bankId, firstName, lastName, phoneNumber, dateOfBirth);
                     if (result.Ok)
