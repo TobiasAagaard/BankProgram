@@ -8,7 +8,7 @@ namespace ShellBank.Models
         public int Id { get; set; }
         public int BankId { get; set; }
         public int UserId { get; set; }
-        public int AdvisorProfileId { get; set; }
+        public int? AdvisorProfileId { get; set; }
         public int? GuardianCustomerId { get; set; }
 
         [Required]

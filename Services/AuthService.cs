@@ -31,10 +31,11 @@ namespace ShellBank.Services
                 Email = email,
                 PasswordHash = BC.HashPassword(password),
                 UserRole = Role.Advisor,
-                BankId = bankId,
+                BankId = bankId
             };
             AdvisorProfile advisorProfile = new AdvisorProfile
             {
+                BankId = bankId,
                 FirstName = firstName,
                 LastName = lastName,
                 IsAdmin = isAdmin,
