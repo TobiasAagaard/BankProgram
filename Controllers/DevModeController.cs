@@ -42,8 +42,29 @@ namespace ShellBank.Controllers
                     AnsiConsole.MarkupLine($"[green]Registration Number: {newBank.RegistrationNumber}[/]");
                     break;
                 case DevModeView.DevModeOption.CreateCustomer:
-                    AnsiConsole.MarkupLine("[yellow]Customer creation not implemented yet.[/]");
+                    string email = AnsiConsole.Ask<string>("Enter customer email:");
+                    string password = AnsiConsole.Ask<string>("Enter customer password:");
+                    string verifiedPassword = AnsiConsole.Ask<string>("Verify customer password:");
+                    while (password != verifiedPassword)
+                    {
+                        AnsiConsole.MarkupLine("[red]Passwords do not match. Please try again.[/]");
+                        password = AnsiConsole.Ask<string>("Enter customer password:");
+                        verifiedPassword = AnsiConsole.Ask<string>("Verify customer password:");
+                    } 
+                    string firstName = AnsiConsole.Ask<string>("Enter customer first name:");
+                    string lastName = AnsiConsole.Ask<string>("Enter customer last name:");
+                    DateTime? dateOfBirth = AnsiConsole.Ask<DateTime?>("Enter customer date of birth:");
+                    int bankId = AnsiConsole.Ask<int>("Enter bank ID for the customer:");
+                    AuthService authService = new AuthService(new Data.ShellBankContext());
+                    var result = authService.RegisterCustomer(email, password, bankId, firstName, lastName, dateOfBirth);
+                    if (result.Ok)                    {
+                        AnsiConsole.MarkupLine($"[green]Customer '{firstName} {lastName}' created successfully![/]");
+                    }
+                    else                    {
+                        AnsiConsole.MarkupLine($"[red]Error creating customer: {result.Error}[/]");
+                    }
                     break;
+
                 case DevModeView.DevModeOption.CreateAdvisor:
                     AnsiConsole.MarkupLine("[yellow]Advisor creation not implemented yet.[/]");
                     break;

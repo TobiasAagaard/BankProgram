@@ -19,11 +19,11 @@ namespace ShellBank.Models
 
         [NotMapped]
         public string DisplayName => $"{FirstName} {LastName}";
+        [MaxLength(20)]
+        public string PhoneNumber { get; set; } = string.Empty;
 
         // Stored as a bool instead of a fragile string comparison
         public bool IsAdmin { get; set; } = false;
-
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public Bank? Bank { get; set; }
         public User? User { get; set; }

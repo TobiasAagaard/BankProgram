@@ -11,7 +11,7 @@ using ShellBank.Data;
 namespace ShellBank.Migrations
 {
     [DbContext(typeof(ShellBankContext))]
-    [Migration("20260420174543_InitialMigration")]
+    [Migration("20260421103020_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -95,9 +95,6 @@ namespace ShellBank.Migrations
                     b.Property<int>("BankId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -109,6 +106,11 @@ namespace ShellBank.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserId")
@@ -145,15 +147,6 @@ namespace ShellBank.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Banks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Name = "Tech College Bank",
-                            RegistrationNumber = "2293"
-                        });
                 });
 
             modelBuilder.Entity("ShellBank.Models.CustomerProfile", b =>
@@ -167,9 +160,6 @@ namespace ShellBank.Migrations
 
                     b.Property<int>("BankId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("TEXT");
@@ -187,12 +177,13 @@ namespace ShellBank.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("UserId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Username")
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -235,27 +226,14 @@ namespace ShellBank.Migrations
                         .HasMaxLength(72)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("UserRole")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(72)
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BankId");
 
                     b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Users");
