@@ -1,6 +1,6 @@
 namespace ShellBank.Services
 {
-    using Microsoft.EntityFrameworkCore;
+  
     using BC = BCrypt.Net.BCrypt;
     using ShellBank.Models;
     using ShellBank.Data;
@@ -31,10 +31,11 @@ namespace ShellBank.Services
                 Email = email,
                 PasswordHash = BC.HashPassword(password),
                 UserRole = Role.Advisor,
-                BankId = bankId,
+                BankId = bankId
             };
             AdvisorProfile advisorProfile = new AdvisorProfile
             {
+                BankId = bankId,
                 FirstName = firstName,
                 LastName = lastName,
                 IsAdmin = isAdmin,
@@ -46,7 +47,7 @@ namespace ShellBank.Services
             return (true, null);
         }
 
-    public (bool Ok, string? Error) RegisterCustomer(string username, string password, int bankId, string firstName, string lastName)
+    public (bool Ok, string? Error) RegisterCustomer(string email, string password, int bankId, string firstName, string lastName, string phoneNumber, DateTime? dateOfBirth)
         {
 
             (bool ok, string ? error) check = PasswordValidation.ValidatePassword(password);
@@ -54,23 +55,36 @@ namespace ShellBank.Services
             {
                 return (false, check.error);
             }
-            if (data.Users.Any(u => u.Username == username && u.BankId == bankId))
+            if (data.Users.Any(u => u.Email == email && u.BankId == bankId))
             {
                 return (false, "This user already exists. Contact your bank for assistance.");
             }
 
             User user = new User
             {
-                Username = username,
+                BankId = bankId,
+                Email = email,
                 PasswordHash = BC.HashPassword(password),
                 UserRole = Role.Customer,
-                BankId = bankId,
+                IsActive = true,
+                IsDeleted = false,
+                CreatedAt = new DateTime(
+                    DateTime.Now.Year,
+                    DateTime.Now.Month,
+                    DateTime.Now.Day,
+                    DateTime.Now.Hour,
+                    DateTime.Now.Minute,
+                    DateTime.Now.Second)
             };
+
             CustomerProfile customerProfile = new CustomerProfile
             {
+                BankId = bankId,
                 FirstName = firstName,
                 LastName = lastName,
-                User = user
+                User = user,
+                DateOfBirth = dateOfBirth,
+                PhoneNumber = phoneNumber,
             };
             
             data.Users.Add(user);
@@ -101,10 +115,10 @@ namespace ShellBank.Services
         return user;
     }
 
-    public User? AuthenticateCustomer(int bankId, string username, string password)
+    public User? AuthenticateCustomer(int bankId, string email, string password)
     {
         User? user = data.Users
-            .FirstOrDefault(u => u.Username == username &&
+            .FirstOrDefault(u => u.Email == email &&
                                  u.UserRole == Role.Customer &&
                                  u.BankId == bankId &&
                                  u.IsActive &&

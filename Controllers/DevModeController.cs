@@ -3,6 +3,7 @@ namespace ShellBank.Controllers
     using System.Text.RegularExpressions;
     using ShellBank.Models;
     using ShellBank.Services;
+    using ShellBank.Utils;
     using ShellBank.Views;
     using Spectre.Console;
 
@@ -24,26 +25,32 @@ namespace ShellBank.Controllers
             switch (option)
             {
                 case DevModeView.DevModeOption.CreateBank:
-                    string bankName = AnsiConsole.Ask<string>("Enter bank name:");
-                    string registrationNumber = AnsiConsole.Ask<string>("Enter registration number (leave blank for auto-generation)", "");
-                    if (Regex.IsMatch(registrationNumber, "[A-Za-z]"))
+                    CreateBankView createBankView = new CreateBankView();
+                    (string bankName, string registrationNumber) = createBankView.PromptBankName();
+                    if (registrationNumber != "" && !Regex.IsMatch(registrationNumber, @"^\d{4}$"))
                     {
-                        AnsiConsole.MarkupLine("[red]Registration number must be numeric. Auto-generating registration number.[/]");
-                        break;
+                        AnsiConsole.MarkupLine("[red]Invalid registration number. It must be a 4-digit number.[/]");
+                        return;
                     }
-                    if (!string.IsNullOrEmpty(registrationNumber) && (Convert.ToInt32(registrationNumber) < 1000 || Convert.ToInt32(registrationNumber) > 9999))
-                    {
-                        AnsiConsole.MarkupLine("[red]Registration number must be a 4-digit number. Auto-generating registration number.[/]");
-                        registrationNumber = "";
-                    }
-                    
                     Bank newBank = bankService.CreateBank(bankName, registrationNumber);
-                    AnsiConsole.MarkupLine($"[green]Bank '{newBank.Name}' created successfully![/]");
-                    AnsiConsole.MarkupLine($"[green]Registration Number: {newBank.RegistrationNumber}[/]");
+                    AnsiConsole.MarkupLine($"[green]{newBank.Name} was created successfully with registration number {newBank.RegistrationNumber}![/]");
                     break;
+
                 case DevModeView.DevModeOption.CreateCustomer:
-                    AnsiConsole.MarkupLine("[yellow]Customer creation not implemented yet.[/]");
+                    CreateCustomerView createCustomerView = new CreateCustomerView();
+                    (int bankId, string email, string password, string verifiedPassword, string firstName, string lastName, string phoneNumber, DateTime? dateOfBirth) = createCustomerView.PromptCustomerDetails();
+                    AuthService authService = new AuthService(new Data.ShellBankContext());
+                    var result = authService.RegisterCustomer(email, password, bankId, firstName, lastName, phoneNumber, dateOfBirth);
+                    if (result.Ok)
+                    {
+                        AnsiConsole.MarkupLine($"[green]Customer {firstName} {lastName} was created successfully![/]");
+                    }
+                    else
+                    {
+                        AnsiConsole.MarkupLine($"[red]Failed to create customer: {result.Error}[/]");
+                    }
                     break;
+
                 case DevModeView.DevModeOption.CreateAdvisor:
                     AnsiConsole.MarkupLine("[yellow]Advisor creation not implemented yet.[/]");
                     break;

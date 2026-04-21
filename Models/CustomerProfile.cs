@@ -8,7 +8,7 @@ namespace ShellBank.Models
         public int Id { get; set; }
         public int BankId { get; set; }
         public int UserId { get; set; }
-        public int AdvisorProfileId { get; set; }
+        public int? AdvisorProfileId { get; set; }
         public int? GuardianCustomerId { get; set; }
 
         [Required]
@@ -21,13 +21,10 @@ namespace ShellBank.Models
 
         [NotMapped]
         public string DisplayName => $"{FirstName} {LastName}";
+         [MaxLength(20)]
+        public string PhoneNumber { get; set; } = string.Empty;
 
         public DateTime? DateOfBirth { get; set; }
-
-        [StringLength(10, MinimumLength = 10)]
-        public string? Username { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [NotMapped]
         public bool IsMinor => GuardianCustomerId.HasValue;
@@ -36,8 +33,8 @@ namespace ShellBank.Models
         public User? User { get; set; }
         public AdvisorProfile? AdvisorProfile { get; set; }
         public CustomerProfile? Guardian { get; set; }
-        public ICollection<CustomerProfile> Dependents { get; set; } = [];
-        public ICollection<Account> Accounts { get; set; } = [];
-        public ICollection<AccountAccess> AccountAccesses { get; set; } = [];
+        public ICollection<CustomerProfile> Dependents { get; set; } = new List<CustomerProfile>();
+        public ICollection<Account> Accounts { get; set; } = new List<Account>();
+        public ICollection<AccountAccess> AccountAccesses { get; set; } = new List<AccountAccess>();
     }
 }

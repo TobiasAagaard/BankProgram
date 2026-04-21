@@ -31,7 +31,6 @@ namespace ShellBank.Data
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(u => u.Email).IsUnique();
-                entity.HasIndex(u => u.Username).IsUnique();
             });
 
             modelBuilder.Entity<Account>(entity =>
@@ -55,15 +54,6 @@ namespace ShellBank.Data
                     .HasForeignKey(aa => aa.CustomerId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-            modelBuilder.Entity<Bank>().HasData(
-                new Bank
-                {
-                    Id = 1,
-                    Name = "Tech College Bank",
-                    RegistrationNumber = "2293",
-                    CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-                }
-            );
         }
     }
 }
