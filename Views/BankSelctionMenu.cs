@@ -38,8 +38,6 @@ namespace ShellBank.Views
             if (selected == "[grey]← Go back[/]")
                 return null;
 
-            Console.ReadKey(intercept: true);
-
             return banks.FirstOrDefault(b => b.Name == selected);
         }
     }
