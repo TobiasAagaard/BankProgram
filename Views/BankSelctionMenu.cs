@@ -3,7 +3,7 @@ namespace ShellBank.Views
     using Spectre.Console;
     using ShellBank.Models;
 
-    class BankSelectionMenu : BaseView
+    class BankSelectionMenu
     {
         public Bank? PromptBankSelection(List<Bank> banks)
         {
