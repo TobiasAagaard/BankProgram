@@ -1,27 +1,75 @@
 # ShellBank
-A CLI bank application built in C# (.NET 10) that simulates core banking operations. Designed as a OOP exercise covering encapsulation, class design, and MVC architecture, with a SQLite-backed persistent data layer via Entity Framework Core.
+
+A CLI banking application built in **C# (.NET 10)** that simulates core banking operations from a terminal. Designed as an OOP exercise covering encapsulation, class design, and MVC architecture, with a SQLite-backed persistent data layer via Entity Framework Core.
+
+---
+
+## Features
+
+- **Multi-role access** — separate flows for Customers and Advisors
+- **Bank management** — create and select banks with unique 4-digit registration numbers
+- **User authentication** — BCrypt-hashed passwords with timing-safe login for both customers and advisors
+- **Account system** — supports multiple account types: Checking, Savings, Loan, Credit, Business, Student, and Child Savings
+- **Dev mode** — seed initial banks and users for quick first-time setup
+
+---
 
 ## Tech Stack
-- .NET 10
-- Entity Framework Core 10 + SQLite
-- Spectre.Console 0.55
+
+| Technology | Version |
+|---|---|
+| .NET | 10 |
+| Entity Framework Core + SQLite | 10.0.6 |
+| Spectre.Console For TUI | 0.55.1 |
+
+---
 
 ## Getting Started
-1. Clone the repo
-2. Restore dependencies and apply migrations:
+
+### Prerequisites
+
+- [.NET 10 SDK](https://dotnet.microsoft.com/download)
+- [EF Core CLI tools](https://learn.microsoft.com/en-us/ef/core/cli/dotnet):
+  ```bash
+  dotnet tool install --global dotnet-ef
+  ```
+
+### Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/TobiasAagaard/ShellBank
+   cd ShellBank
    ```
+
+2. **Restore dependencies and apply migrations**
+   ```bash
    dotnet restore
    dotnet ef database update
    ```
-3. Build and run:
-   ```
+   This creates the SQLite database at `database/ShellBank.db` and seeds an initial bank (`Tech College Bank`, reg. `2293`).
+   > **Note:** Note: To inspect the SQLite database, you can use software like DataGrip or DB Browser for SQLite.
+4. **Build and run**
+   ```bash
    dotnet build
    dotnet run
    ```
 
-## Dev-Mode
-To run the application in dev mode use the following command:
+---
+
+## Dev Mode
+
+Run the application in dev mode for first-time setup and data seeding:
+
+```bash
+dotnet run -- --dev
 ```
-dotnet run --dev
-```
-This feature is intended for the first-time setup of the application. It allows you to quickly create a bank and users (either as customers or advisors) by seeding initial data into the database.
+
+Dev mode provides a quick-setup menu with the following options:
+
+| Option | Description |
+|---|---|
+| `CreateBank` | Create a new bank with a custom or auto-generated 4-digit registration number |
+| `CreateCustomer` | *(Coming soon)* Create a customer account |
+| `CreateAdvisor` | *(Coming soon)* Create an advisor account |
+
